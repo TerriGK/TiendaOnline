@@ -1,186 +1,203 @@
-/* Reset de estilos básicos */
-* {
+/* styles.css */
+
+/* Estilo base para el sitio */
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   margin: 0;
   padding: 0;
-  box-sizing: border-box;
+  background-color: #f0f0f0; /* Color de fondo más suave */
 }
 
-body {
-  font-family: 'Arial', sans-serif;
-  background-color: #f9f9f9;
-  color: #333;
-  line-height: 1.6;
-}
-
-/* Estilos del Header */
+/* Encabezado */
 header {
-  background-color: #2c3e50;
+  background-color: #2d3e50; /* Color de fondo más sofisticado */
   color: white;
   padding: 20px 0;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 0 20px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
 header .logo h1 {
-  font-size: 26px;
-  color: #f39c12;
-  text-transform: uppercase;
+  text-align: center;
+  margin: 0;
+  font-size: 30px;
+  letter-spacing: 1px;
+}
+
+nav {
+  text-align: center;
+  margin-top: 15px;
 }
 
 nav ul {
   list-style-type: none;
-  display: flex;
+  padding: 0;
 }
 
 nav ul li {
+  display: inline;
   margin: 0 20px;
 }
 
 nav ul li a {
-  color: white;
+  color: #f8f8f8;
   text-decoration: none;
-  font-size: 16px;
-  text-transform: capitalize;
-  transition: color 0.3s;
+  font-size: 18px;
+  font-weight: bold;
+  text-transform: uppercase;
 }
 
 nav ul li a:hover {
-  color: #f39c12;
+  color: #1e90ff; /* Resaltado al pasar el mouse */
 }
 
-/* Estilos para el botón del carrito */
-.cart-btn {
-  background-color: #ff8c00;
-  color: white;
-  padding: 12px 25px;
-  border: none;
-  border-radius: 30px;
-  display: flex;
-  align-items: center;
-  font-size: 16px;
-  cursor: pointer;
-  transition: background-color 0.3s ease, transform 0.2s ease;
+/* Contenedor de productos */
+.cart-container {
+  display: inline-block;
+  margin-left: 30px;
 }
 
-.cart-btn i {
-  font-size: 22px; /* Tamaño del ícono del carrito */
-  margin-right: 10px;
+section#productos {
+  margin: 40px;
 }
 
-.cart-btn:hover {
-  background-color: #e07d00;
-  transform: scale(1.05);
-}
-
-#cart-count {
-  font-weight: bold;
-  margin-left: 8px;
-}
-
-/* Estilos generales de la sección de productos */
-#productos {
-  padding: 40px 20px;
-  max-width: 1200px;
-  margin: 0 auto;
-  background-color: #fff;
+h2 {
+  text-align: center;
+  font-size: 32px;
+  margin-bottom: 25px;
+  color: #333;
 }
 
 .categoria {
-  margin-bottom: 50px;
-}
-
-.categoria h2 {
-  font-size: 24px;  /* Mismo tamaño que en el contacto */
-  margin-bottom: 20px;
-  color: #333;
-  text-transform: uppercase;
-  letter-spacing: 1px;
+  margin-bottom: 40px;
 }
 
 .productos-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-  gap: 30px;
-  padding: 10px;
+  grid-template-columns: repeat(auto-fill, minmax(270px, 1fr));
+  gap: 25px;
+  justify-items: center;
 }
 
-/* Estilos para los cards de producto */
 .producto {
-  background-color: white;
-  border-radius: 12px;
+  background-color: #fff;
   padding: 20px;
-  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
   text-align: center;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   transition: transform 0.3s ease, box-shadow 0.3s ease;
-  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  min-height: 370px;
+  height: 100%;
   position: relative;
+  align-items: center; /* Asegura que el contenido esté centrado */
 }
 
 .producto:hover {
-  transform: scale(1.05);
-  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
+  transform: translateY(-5px);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
 }
 
 .producto img {
-  max-width: 100%;
+  width: 100%;
   height: auto;
-  border-radius: 12px;
-  margin-bottom: 15px;
+  cursor: pointer;
   transition: transform 0.3s ease;
+  margin-bottom: 15px;
+  border-radius: 8px;
 }
 
 .producto img:hover {
   transform: scale(1.1);
 }
 
-.producto h4 {
-  font-size: 18px;  /* Ajuste al tamaño de los títulos en contacto */
-  margin-top: 15px;
-  color: #333;
-  font-weight: normal;  /* Igualar peso de fuente al del contacto */
-}
-
-.precio {
+.producto h4, .producto .precio {
   margin: 10px 0;
-  font-size: 16px;  /* Tamaño del precio similar al de contacto */
-  color: #ff8c00;
-  font-weight: normal;
+  text-align: center;
+  font-size: 18px; /* Ajusta el tamaño del texto */
 }
 
-/* Botón para agregar al carrito */
-.add-to-cart {
-  background-color: #007bff;
+.producto .precio {
+  color: #555;
+}
+
+.producto button.add-to-cart {
+  background-color: #1e90ff; /* Color atractivo para el botón */
   color: white;
-  padding: 14px 24px;
   border: none;
-  border-radius: 30px;
-  cursor: pointer;
+  padding: 12px 20px;
   font-size: 16px;
+  cursor: pointer;
+  border-radius: 8px;
+  text-align: center;
+  display: block;
   margin-top: 15px;
-  transition: background-color 0.3s, transform 0.2s ease-in-out;
+  width: 100%;
+  transition: background-color 0.3s ease;
 }
 
-.add-to-cart:hover {
-  background-color: #0056b3;
-  transform: scale(1.05);
+.producto button.add-to-cart:hover {
+  background-color: #5a9ef1;
 }
 
-.add-to-cart:active {
-  background-color: #004494;
+/* Pie de página */
+footer {
+  background-color: #2d3e50;
+  color: white;
+  padding: 15px 0;
+  text-align: center;
+  margin-top: 50px;
 }
 
-/* Efecto de desvanecimiento en la carga */
-@keyframes fadeIn {
+footer p {
+  font-size: 14px;
+}
+
+/* Modal */
+.modal {
+  display: none;
+  position: fixed;
+  z-index: 1000;
+  padding-top: 60px;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background-color: rgba(0, 0, 0, 0.7);
+}
+
+.modal-content {
+  margin: auto;
+  display: block;
+  max-width: 80%;
+  max-height: 80%;
+  animation: zoomIn 0.3s;
+}
+
+.close {
+  position: absolute;
+  top: 20px;
+  right: 35px;
+  color: #fff;
+  font-size: 40px;
+  font-weight: bold;
+  transition: color 0.3s;
+}
+
+.close:hover,
+.close:focus {
+  color: #1e90ff; /* Color atractivo al pasar el mouse */
+  text-decoration: none;
+  cursor: pointer;
+}
+
+@keyframes zoomIn {
   from {
-    opacity: 0;
+    transform: scale(0);
   }
   to {
-    opacity: 1;
+    transform: scale(1);
   }
-}
-
-.producto {
-  animation: fadeIn 0.5s ease-out;
 }
