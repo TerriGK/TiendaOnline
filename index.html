@@ -7,10 +7,182 @@
   <title>FerreteríaOnline</title>
   <link rel="stylesheet" href="styles.css">
   <link rel="stylesheet" href="stylesss.css">
-  <link rel="stylesheet" href="styless.css">
+  <style>
+    /* Animación de entrada */
+    body {
+      animation: fadeInPage 1s ease-in-out;
+    }
+
+    @keyframes fadeInPage {
+      0% { opacity: 0; }
+      100% { opacity: 1; }
+    }
+
+    /* Estilo de la cuadrícula de productos */
+    .productos {
+      display: grid;
+      grid-template-columns: repeat(6, 1fr); /* 6 columnas */
+      gap: 20px; /* Espacio entre los productos */
+      padding: 20px; /* Margen interno */
+    }
+
+    /* Estilo para cada tarjeta de producto */
+    .producto {
+      background-color: #fff;
+      padding: 15px;
+      border-radius: 8px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      text-align: center;
+      transition: transform 0.3s ease;
+      animation: fadeInProduct 0.5s ease-in-out; /* Animación de los productos */
+    }
+
+    @keyframes fadeInProduct {
+      0% { opacity: 0; }
+      100% { opacity: 1; }
+    }
+
+    .producto:hover {
+      transform: scale(1.05);
+    }
+
+    .producto img {
+      width: 100%;
+      height: auto;
+      max-height: 150px;
+      object-fit: contain;
+      cursor: pointer;
+      transition: transform 0.3s ease;
+    }
+
+    .producto h3 {
+      margin: 15px 0;
+      font-size: 1.2em;
+      color: #333;
+    }
+
+    .producto p {
+      color: #777;
+      font-size: 1.1em;
+    }
+
+    .producto button {
+      background-color: #28a745;
+      color: white;
+      border: none;
+      padding: 10px;
+      cursor: pointer;
+      border-radius: 5px;
+      margin-top: 10px;
+      width: 100%;
+      transition: transform 0.3s ease, background-color 0.2s ease;
+    }
+
+    .producto button:hover {
+      background-color: #218838;
+    }
+
+    .producto button:active {
+      transform: scale(0.95);
+    }
+
+    /* Título de la sección de productos */
+    .titulo {
+      text-align: center;
+      font-size: 2em;
+      font-weight: bold;
+      margin-bottom: 20px;
+      color: #333;
+    }
+
+    /* Estilo para el carrito flotante */
+    .carrito {
+      position: fixed;
+      bottom: -400px; /* Inicialmente fuera de la vista */
+      right: 0;
+      width: 300px;
+      height: 400px;
+      background-color: #fff;
+      border-radius: 10px 10px 0 0;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+      padding: 20px;
+      overflow-y: auto;
+      transition: bottom 0.5s ease;
+    }
+
+    .carrito.open {
+      bottom: 0; /* Se desliza hacia arriba */
+    }
+
+    .carrito h3 {
+      text-align: center;
+      margin-bottom: 20px;
+    }
+
+    .carrito .producto-carrito {
+      display: flex;
+      align-items: center;
+      margin-bottom: 10px;
+      opacity: 0;
+      animation: fadeIn 0.5s forwards; /* Animación de aparición */
+    }
+
+    .carrito .producto-carrito img {
+      width: 50px;
+      height: 50px;
+      object-fit: contain;
+      margin-right: 10px;
+    }
+
+    .carrito .producto-carrito p {
+      margin: 0;
+      flex: 1;
+    }
+
+    .carrito .producto-carrito span {
+      font-weight: bold;
+    }
+
+    .carrito .total {
+      text-align: right;
+      font-size: 1.2em;
+      margin-top: 20px;
+    }
+
+    .carrito button {
+      background-color: #007bff;
+      color: white;
+      border: none;
+      padding: 10px;
+      cursor: pointer;
+      border-radius: 5px;
+      width: 100%;
+      transition: transform 0.3s ease, background-color 0.2s ease;
+    }
+
+    .carrito button:hover {
+      background-color: #0056b3;
+    }
+
+    .carrito button:active {
+      transform: scale(0.95);
+    }
+
+    /* Animación de aparición */
+    @keyframes fadeIn {
+      0% { opacity: 0; }
+      100% { opacity: 1; }
+    }
+
+    /* Animación para la ampliación de imagen */
+    .producto img.ampliado {
+      transform: scale(1.5);
+      z-index: 10;
+    }
+  </style>
 </head>
 <body>
-  <!-- Header -->
+
   <header>
     <div class="logo">
       <h1>FerreteríaOnline</h1>
@@ -21,83 +193,123 @@
         <li><a href="servicios.html">Servicios</a></li>
         <li><a href="contacto.html">Contacto</a></li>
       </ul>
-      <!-- Carrito -->
-      <div class="cart-container"></div>
     </nav>
   </header>
-  
-  <!-- Modal para mostrar la imagen expandida -->
-  <div id="imageModal" class="modal">
-    <span class="close">&times;</span>
-    <img class="modal-content" id="modalImage">
+
+  <!-- Título centrado para la sección de productos -->
+  <div class="titulo">
+    <h2>Productos Destacados</h2>
   </div>
 
-  <section id="productos">
-
-    <!-- Herramientas de Mano -->
-    <div class="categoria">
-      <h2>Herramientas de Mano</h2>
-      <div class="productos-grid">
-        <div class="producto">
-          <img src="https://http2.mlstatic.com/D_NQ_NP_812758-MLU70415548245_072023-O.webp" alt="Martillo con mango ergonómico">
-          <h4>Martillo carpintero</h4>
-          <p class="precio">$10</p>
-          <button class="add-to-cart" data-name="Martillo" data-price="10">Agregar al carrito</button>
-        </div>
-        <div class="producto">
-          <img src="https://http2.mlstatic.com/D_NQ_NP_643757-MLU70439050570_072023-O.webp" alt="Destornillador con punta magnética">
-          <h4>Martillo De Bola</h4>
-          <p class="precio">$5</p>
-          <button class="add-to-cart" data-name="Destornillador" data-price="5">Agregar al carrito</button>
-        </div>
-        <div class="producto">
-          <img src="https://http2.mlstatic.com/D_NQ_NP_671825-MLU72462169589_102023-O.webp" alt="Alicate de precisión">
-          <h4>Destornilladores</h4>
-          <p class="precio">$8</p>
-          <button class="add-to-cart" data-name="Alicate" data-price="8">Agregar al carrito</button>
-        </div>
-        <div class="producto">
-          <img src="https://http2.mlstatic.com/D_NQ_NP_984866-MLU72968069084_112023-O.webp" alt="Cincel de acero">
-          <h4>Destornillador Phillips</h4>
-          <p class="precio">$12</p>
-          <button class="add-to-cart" data-name="Cincel" data-price="12">Agregar al carrito</button>
-        </div>
-      </div>
+  <div class="productos">
+    <!-- Producto 1 -->
+    <div class="producto">
+      <img src="img/catalogo1/images1.png" alt="Martillo carpintero" onclick="ampliarImagen(this)">
+      <h3>Martillo carpintero</h3>
+      <p>$10</p>
+      <button onclick="agregarAlCarrito('Martillo carpintero', 10, 'img/catalogo1/images1.png')">Agregar al carrito</button>
     </div>
-  </section>
+
+    <!-- Producto 2 -->
+    <div class="producto">
+      <img src="img/martillo-bola.png" alt="Martillo de bola" onclick="ampliarImagen(this)">
+      <h3>Martillo de bola</h3>
+      <p>$5</p>
+      <button onclick="agregarAlCarrito('Martillo de bola', 5, 'img/martillo-bola.png')">Agregar al carrito</button>
+    </div>
+    <!-- Más productos -->
+  </div>
+
+
+    <!-- Título centrado para la sección de productos -->
+    <div class="titulo">
+      <h2>Productos Destacados</h2>
+    </div>
   
-  <footer>
-    <p>&copy; 2024 Ferretería Online. Todos los derechos reservados.</p>
-  </footer>
+    <div class="productos">
+      <!-- Producto 1 -->
+      <div class="producto">
+        <img src="img/catalogo1/images1.png" alt="Martillo carpintero" onclick="ampliarImagen(this)">
+        <h3>Martillo carpintero</h3>
+        <p>$10</p>
+        <button onclick="agregarAlCarrito('Martillo carpintero', 10, 'img/catalogo1/images1.png')">Agregar al carrito</button>
+      </div>
+  
+      <!-- Producto 2 -->
+      <div class="producto">
+        <img src="img/martillo-bola.png" alt="Martillo de bola" onclick="ampliarImagen(this)">
+        <h3>Martillo de bola</h3>
+        <p>$5</p>
+        <button onclick="agregarAlCarrito('Martillo de bola', 5, 'img/martillo-bola.png')">Agregar al carrito</button>
+      </div>
+      <!-- Más productos -->
+    </div>
+
+  <!-- Carrito flotante -->
+  <div class="carrito" id="carrito">
+    <h3>Carrito</h3>
+    <div id="productosEnCarrito"></div>
+    <div class="total" id="totalCarrito">Total: $0</div>
+    <button onclick="irAlPago()">Ir al pago</button>
+  </div>
 
   <script>
-    // JavaScript para manejar el modal de la imagen expandida
-    const modal = document.getElementById("imageModal");
-    const modalImage = document.getElementById("modalImage");
-    const closeBtn = document.querySelector(".close");
+    let carrito = [];
 
-    // Selecciona todas las imágenes de productos
-    const productImages = document.querySelectorAll(".producto img");
+    function agregarAlCarrito(nombre, precio, imagen) {
+      const producto = { nombre, precio, imagen };
+      carrito.push(producto);
+      updateCarrito();
+      // Animación al agregar producto
+      const boton = event.target;
+      boton.style.transform = 'scale(1.1)';
+      setTimeout(() => boton.style.transform = 'scale(1)', 300);
+    }
 
-    // Añade evento de clic para cada imagen de producto
-    productImages.forEach(img => {
-      img.addEventListener("click", (e) => {
-        modal.style.display = "block";
-        modalImage.src = e.target.src;
+    function updateCarrito() {
+      const carritoElement = document.getElementById("carrito");
+      const productosEnCarrito = document.getElementById("productosEnCarrito");
+      const totalCarrito = document.getElementById("totalCarrito");
+
+      // Limpiar el carrito actual
+      productosEnCarrito.innerHTML = '';
+
+      // Agregar los productos al carrito con animación
+      carrito.forEach(producto => {
+        const productoCarrito = document.createElement('div');
+        productoCarrito.classList.add('producto-carrito');
+        productoCarrito.innerHTML = `
+          <img src="${producto.imagen}" alt="${producto.nombre}">
+          <p>${producto.nombre} - $${producto.precio}</p>
+        `;
+        productosEnCarrito.appendChild(productoCarrito);
       });
-    });
 
-    // Cierra el modal cuando se hace clic en el botón de cierre
-    closeBtn.addEventListener("click", () => {
-      modal.style.display = "none";
-    });
+      // Calcular el total
+      const total = carrito.reduce((total, producto) => total + producto.precio, 0);
+      totalCarrito.innerHTML = `Total: $${total}`;
 
-    // Cierra el modal si se hace clic fuera de la imagen
-    window.addEventListener("click", (e) => {
-      if (e.target === modal) {
-        modal.style.display = "none";
+      // Abrir el carrito con animación
+      if (carrito.length > 0) {
+        carritoElement.classList.add('open');
+      } else {
+        carritoElement.classList.remove('open');
       }
-    });
+    }
+
+    function irAlPago() {
+      alert("Proceso de pago no implementado.");
+      carrito.length = 0; // Limpiar carrito
+      updateCarrito(); // Actualizar carrito
+      const carritoElement = document.getElementById("carrito");
+      carritoElement.classList.remove('open'); // Cerrar carrito
+    }
+
+    // Función para ampliar la imagen
+    function ampliarImagen(imagen) {
+      imagen.classList.toggle('ampliado');
+    }
   </script>
+
 </body>
 </html>
