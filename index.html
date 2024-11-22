@@ -1,49 +1,59 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <title>FerreteríaOnline</title>
   <link rel="stylesheet" href="styles.css">
-  <link rel="stylesheet" href="stylesss.css">
   <style>
     /* Animación de entrada */
     body {
       animation: fadeInPage 1s ease-in-out;
+      font-family: 'Arial', sans-serif;
+      background-color: #f4f4f4;
+      margin: 0;
+      padding: 0;
     }
 
     @keyframes fadeInPage {
-      0% { opacity: 0; }
-      100% { opacity: 1; }
+      0% {
+        opacity: 0;
+      }
+
+      100% {
+        opacity: 1;
+      }
     }
 
     /* Estilo de la cuadrícula de productos */
     .productos {
       display: grid;
-      grid-template-columns: repeat(6, 1fr); /* 6 columnas */
-      gap: 20px; /* Espacio entre los productos */
-      padding: 20px; /* Margen interno */
+      grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+      gap: 20px;
+      padding: 30px;
     }
 
     /* Estilo para cada tarjeta de producto */
     .producto {
       background-color: #fff;
-      padding: 15px;
-      border-radius: 8px;
-      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
       text-align: center;
-      transition: transform 0.3s ease;
-      animation: fadeInProduct 0.5s ease-in-out; /* Animación de los productos */
-    }
-
-    @keyframes fadeInProduct {
-      0% { opacity: 0; }
-      100% { opacity: 1; }
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      height: 100%;
+      border: 1px solid #ddd;
     }
 
     .producto:hover {
-      transform: scale(1.05);
+      transform: translateY(-10px);
+      box-shadow: 0 15px 25px rgba(0, 0, 0, 0.2);
     }
 
     .producto img {
@@ -51,54 +61,59 @@
       height: auto;
       max-height: 150px;
       object-fit: contain;
-      cursor: pointer;
       transition: transform 0.3s ease;
+    }
+
+    .producto img:hover {
+      transform: scale(1.05);
     }
 
     .producto h3 {
       margin: 15px 0;
-      font-size: 1.2em;
+      font-size: 1.3em;
       color: #333;
+      font-weight: 600;
     }
 
     .producto p {
       color: #777;
       font-size: 1.1em;
+      margin-bottom: 20px;
     }
 
     .producto button {
-      background-color: #28a745;
+      background-color: #007bff;
       color: white;
       border: none;
-      padding: 10px;
+      padding: 12px;
       cursor: pointer;
-      border-radius: 5px;
-      margin-top: 10px;
+      border-radius: 8px;
+      font-size: 1.1em;
       width: 100%;
-      transition: transform 0.3s ease, background-color 0.2s ease;
+      transition: transform 0.3s ease, background-color 0.3s ease;
     }
 
     .producto button:hover {
-      background-color: #218838;
+      background-color: #0056b3;
     }
 
     .producto button:active {
-      transform: scale(0.95);
+      transform: scale(0.98);
     }
 
     /* Título de la sección de productos */
     .titulo {
       text-align: center;
-      font-size: 2em;
-      font-weight: bold;
-      margin-bottom: 20px;
+      font-size: 2.5em;
+      font-weight: 700;
+      margin-bottom: 40px;
       color: #333;
     }
 
     /* Estilo para el carrito flotante */
     .carrito {
       position: fixed;
-      bottom: -400px; /* Inicialmente fuera de la vista */
+      bottom: -400px;
       right: 0;
       width: 300px;
       height: 400px;
@@ -111,7 +126,7 @@
     }
 
     .carrito.open {
-      bottom: 0; /* Se desliza hacia arriba */
+      bottom: 0;
     }
 
     .carrito h3 {
@@ -124,7 +139,7 @@
       align-items: center;
       margin-bottom: 10px;
       opacity: 0;
-      animation: fadeIn 0.5s forwards; /* Animación de aparición */
+      animation: fadeIn 0.5s forwards;
     }
 
     .carrito .producto-carrito img {
@@ -139,10 +154,6 @@
       flex: 1;
     }
 
-    .carrito .producto-carrito span {
-      font-weight: bold;
-    }
-
     .carrito .total {
       text-align: right;
       font-size: 1.2em;
@@ -150,28 +161,33 @@
     }
 
     .carrito button {
-      background-color: #007bff;
+      background-color: #28a745;
       color: white;
       border: none;
-      padding: 10px;
+      padding: 12px;
       cursor: pointer;
-      border-radius: 5px;
+      border-radius: 8px;
       width: 100%;
-      transition: transform 0.3s ease, background-color 0.2s ease;
+      transition: transform 0.3s ease, background-color 0.3s ease;
     }
 
     .carrito button:hover {
-      background-color: #0056b3;
+      background-color: #218838;
     }
 
     .carrito button:active {
-      transform: scale(0.95);
+      transform: scale(0.98);
     }
 
     /* Animación de aparición */
     @keyframes fadeIn {
-      0% { opacity: 0; }
-      100% { opacity: 1; }
+      0% {
+        opacity: 0;
+      }
+
+      100% {
+        opacity: 1;
+      }
     }
 
     /* Animación para la ampliación de imagen */
@@ -181,6 +197,7 @@
     }
   </style>
 </head>
+
 <body>
 
   <header>
@@ -207,43 +224,139 @@
       <img src="img/catalogo1/images1.png" alt="Martillo carpintero" onclick="ampliarImagen(this)">
       <h3>Martillo carpintero</h3>
       <p>$10</p>
-      <button onclick="agregarAlCarrito('Martillo carpintero', 10, 'img/catalogo1/images1.png')">Agregar al carrito</button>
+      <button onclick="agregarAlCarrito('Martillo carpintero', 10, 'img/catalogo1/images1.png')">Agregar al
+        carrito</button>
     </div>
 
-    <!-- Producto 2 -->
     <div class="producto">
-      <img src="img/martillo-bola.png" alt="Martillo de bola" onclick="ampliarImagen(this)">
+      <img src="img/catalogo1/images2.png" alt="Martillo de bola" onclick="ampliarImagen(this)">
       <h3>Martillo de bola</h3>
       <p>$5</p>
-      <button onclick="agregarAlCarrito('Martillo de bola', 5, 'img/martillo-bola.png')">Agregar al carrito</button>
+      <button onclick="agregarAlCarrito('Martillo de bola', 5, 'img/catalogo1/images2.png')">Agregar al carrito</button>
     </div>
-    <!-- Más productos -->
+    <div class="producto">
+      <img src="img/catalogo1/images2.png" alt="Martillo de bola" onclick="ampliarImagen(this)">
+      <h3>Martillo de bola</h3>
+      <p>$5</p>
+      <button onclick="agregarAlCarrito('Martillo de bola', 5, 'img/catalogo1/images2.png')">Agregar al carrito</button>
+    </div>
+    <div class="producto">
+      <img src="img/catalogo1/images2.png" alt="Martillo de bola" onclick="ampliarImagen(this)">
+      <h3>Martillo de bola</h3>
+      <p>$5</p>
+      <button onclick="agregarAlCarrito('Martillo de bola', 5, 'img/catalogo1/images2.png')">Agregar al carrito</button>
+    </div>
+
   </div>
 
 
-    <!-- Título centrado para la sección de productos -->
-    <div class="titulo">
-      <h2>Productos Destacados</h2>
+
+  <div class="titulo">
+    <h2>Productos Destacados</h2>
+  </div>
+
+  <div class="productos">
+    <!-- Producto 1 -->
+    <div class="producto">
+      <img src="img/catalogo1/images1.png" alt="Martillo carpintero" onclick="ampliarImagen(this)">
+      <h3>Martillo carpintero</h3>
+      <p>$10</p>
+      <button onclick="agregarAlCarrito('Martillo carpintero', 10, 'img/catalogo1/images1.png')">Agregar al
+        carrito</button>
     </div>
-  
-    <div class="productos">
-      <!-- Producto 1 -->
-      <div class="producto">
-        <img src="img/catalogo1/images1.png" alt="Martillo carpintero" onclick="ampliarImagen(this)">
-        <h3>Martillo carpintero</h3>
-        <p>$10</p>
-        <button onclick="agregarAlCarrito('Martillo carpintero', 10, 'img/catalogo1/images1.png')">Agregar al carrito</button>
-      </div>
-  
-      <!-- Producto 2 -->
-      <div class="producto">
-        <img src="img/martillo-bola.png" alt="Martillo de bola" onclick="ampliarImagen(this)">
-        <h3>Martillo de bola</h3>
-        <p>$5</p>
-        <button onclick="agregarAlCarrito('Martillo de bola', 5, 'img/martillo-bola.png')">Agregar al carrito</button>
-      </div>
-      <!-- Más productos -->
+
+    <div class="producto">
+      <img src="img/catalogo1/images2.png" alt="Martillo de bola" onclick="ampliarImagen(this)">
+      <h3>Martillo de bola</h3>
+      <p>$5</p>
+      <button onclick="agregarAlCarrito('Martillo de bola', 5, 'img/catalogo1/images2.png')">Agregar al carrito</button>
     </div>
+    <div class="producto">
+      <img src="img/catalogo1/images2.png" alt="Martillo de bola" onclick="ampliarImagen(this)">
+      <h3>Martillo de bola</h3>
+      <p>$5</p>
+      <button onclick="agregarAlCarrito('Martillo de bola', 5, 'img/catalogo1/images2.png')">Agregar al carrito</button>
+    </div>
+    <div class="producto">
+      <img src="img/catalogo1/images2.png" alt="Martillo de bola" onclick="ampliarImagen(this)">
+      <h3>Martillo de bola</h3>
+      <p>$5</p>
+      <button onclick="agregarAlCarrito('Martillo de bola', 5, 'img/catalogo1/images2.png')">Agregar al carrito</button>
+    </div>
+
+  </div>
+
+
+  <div class="titulo">
+    <h2>Productos Destacados</h2>
+  </div>
+
+  <div class="productos">
+    <!-- Producto 1 -->
+    <div class="producto">
+      <img src="img/catalogo1/images1.png" alt="Martillo carpintero" onclick="ampliarImagen(this)">
+      <h3>Martillo carpintero</h3>
+      <p>$10</p>
+      <button onclick="agregarAlCarrito('Martillo carpintero', 10, 'img/catalogo1/images1.png')">Agregar al
+        carrito</button>
+    </div>
+
+    <div class="producto">
+      <img src="img/catalogo1/images2.png" alt="Martillo de bola" onclick="ampliarImagen(this)">
+      <h3>Martillo de bola</h3>
+      <p>$5</p>
+      <button onclick="agregarAlCarrito('Martillo de bola', 5, 'img/catalogo1/images2.png')">Agregar al carrito</button>
+    </div>
+    <div class="producto">
+      <img src="img/catalogo1/images2.png" alt="Martillo de bola" onclick="ampliarImagen(this)">
+      <h3>Martillo de bola</h3>
+      <p>$5</p>
+      <button onclick="agregarAlCarrito('Martillo de bola', 5, 'img/catalogo1/images2.png')">Agregar al carrito</button>
+    </div>
+    <div class="producto">
+      <img src="img/catalogo1/images2.png" alt="Martillo de bola" onclick="ampliarImagen(this)">
+      <h3>Martillo de bola</h3>
+      <p>$5</p>
+      <button onclick="agregarAlCarrito('Martillo de bola', 5, 'img/catalogo1/images2.png')">Agregar al carrito</button>
+    </div>
+
+  </div>
+
+
+  <div class="titulo">
+    <h2>Productos Destacados</h2>
+  </div>
+
+  <div class="productos">
+    <!-- Producto 1 -->
+    <div class="producto">
+      <img src="img/catalogo1/images1.png" alt="Martillo carpintero" onclick="ampliarImagen(this)">
+      <h3>Martillo carpintero</h3>
+      <p>$10</p>
+      <button onclick="agregarAlCarrito('Martillo carpintero', 10, 'img/catalogo1/images1.png')">Agregar al
+        carrito</button>
+    </div>
+
+    <div class="producto">
+      <img src="img/catalogo1/images2.png" alt="Martillo de bola" onclick="ampliarImagen(this)">
+      <h3>Martillo de bola</h3>
+      <p>$5</p>
+      <button onclick="agregarAlCarrito('Martillo de bola', 5, 'img/catalogo1/images2.png')">Agregar al carrito</button>
+    </div>
+    <div class="producto">
+      <img src="img/catalogo1/images2.png" alt="Martillo de bola" onclick="ampliarImagen(this)">
+      <h3>Martillo de bola</h3>
+      <p>$5</p>
+      <button onclick="agregarAlCarrito('Martillo de bola', 5, 'img/catalogo1/images2.png')">Agregar al carrito</button>
+    </div>
+    <div class="producto">
+      <img src="img/catalogo1/images2.png" alt="Martillo de bola" onclick="ampliarImagen(this)">
+      <h3>Martillo de bola</h3>
+      <p>$5</p>
+      <button onclick="agregarAlCarrito('Martillo de bola', 5, 'img/catalogo1/images2.png')">Agregar al carrito</button>
+    </div>
+
+  </div>
 
   <!-- Carrito flotante -->
   <div class="carrito" id="carrito">
@@ -287,9 +400,9 @@
 
       // Calcular el total
       const total = carrito.reduce((total, producto) => total + producto.precio, 0);
-      totalCarrito.innerHTML = `Total: $${total}`;
+      totalCarrito.innerHTML = `Total: $${total.toFixed(2)}`;
 
-      // Abrir el carrito con animación
+      // Mostrar el carrito
       if (carrito.length > 0) {
         carritoElement.classList.add('open');
       } else {
@@ -298,18 +411,22 @@
     }
 
     function irAlPago() {
-      alert("Proceso de pago no implementado.");
-      carrito.length = 0; // Limpiar carrito
-      updateCarrito(); // Actualizar carrito
-      const carritoElement = document.getElementById("carrito");
-      carritoElement.classList.remove('open'); // Cerrar carrito
+      // Borrar los productos del carrito
+      carrito = [];
+      updateCarrito();
+
+      // Mostrar mensaje de redirección
+      alert("Redireccionando al pago...");
+      // Aquí podrías redirigir a una página de pago, como:
+      // window.location.href = 'pago.html';
     }
 
-    // Función para ampliar la imagen
+    // Ampliar imagen al hacer clic
     function ampliarImagen(imagen) {
       imagen.classList.toggle('ampliado');
     }
   </script>
 
 </body>
+
 </html>
